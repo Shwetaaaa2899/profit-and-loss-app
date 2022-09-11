@@ -17,7 +17,7 @@ function calculateAns(initial,current,quant){
         // alert('loss');
         var loss = (initial-current) * quant;
         var lossPer = ((loss/initial)/100).toFixed(2);
-        outPut.innerHTML =  `Oops ⬇️ it's a loss of Rs. ${loss} and the profit percentage is ${lossPer}% `;
+        outPut.innerHTML =  `Oops ⬇️ it's a loss of Rs. ${loss} and the loss percentage is ${lossPer}% `;
     }
     else{
         outPut.innerHTML = "No profit no loss 💯";
