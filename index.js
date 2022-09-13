@@ -10,27 +10,34 @@ function calculateAns(initial,current,quant){
     if(initial < current){
         // alert("prof");
         var profit = (current-initial)*quant;
-        var profPer = ((profit/initial)*100).toFixed(2);
-        outPut.innerHTML =  `Yeahh 🤑 it's a profit of Rs. ${profit} and the profit percentage is ${profPer}% `;
+        var profPer = ((profit/(initial*quant))*100).toFixed(2);
+        showMsg(`Yeahh 🤑 it's a profit of Rs. ${profit} and the profit percentage is ${profPer}% `);
         }
     else if(current < initial){
         // alert('loss');
         var loss = (initial-current) * quant;
-        var lossPer = ((loss/initial)/100).toFixed(2);
-        outPut.innerHTML =  `Oops ⬇️ it's a loss of Rs. ${loss} and the loss percentage is ${lossPer}% `;
+        var lossPer = ((loss/(initial*quant)*100)).toFixed(2);
+        showMsg(`Oops ⬇️ it's a loss of Rs. ${loss} and the loss percentage is ${lossPer}%`);
     }
     else{
-        outPut.innerHTML = "No profit no loss 💯";
+        showMsg("No profit no loss 💯");
     }
 };
    
 function getAns(){
     if(initial.value == ""  || quant.value == "" || current.value == ''){
-        outPut.innerText = "Kindly enter valid values 👀";
+        showMsg("Blank values are not valid to see the results 👀");
 
     }
-    else{
-        calculateAns(Number(initial.value),Number(current.value),Number(quant.value));
+    else if(initial.value ==0 || quant.value == 0 || current.value == 0){
+        showMsg("Zero as  a value for inputs  is  not valid to see the results 👀");
     }
-}
+    
+    else if(initial.value < 0 || quant.value < 0 || current.value < 0){
+        showMsg("Negative values for  inputs  is  not valid to see the results 👀");
+    }
+    else{
+        return calculateAns(Number(initial.value),Number(current.value),Number(quant.value));
+    }
+};
 getOutput.addEventListener('click',getAns);
